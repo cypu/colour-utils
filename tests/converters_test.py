@@ -1,7 +1,7 @@
 import unittest
 
 from utils.converters import hex_to_rgb
-from utils.exceptions import HexadecimalColourLengthError, HexadecimalValueError
+from utils.exceptions import HexadecimalColourLengthError, HexadecimalValueError, HexadecimalAttributeError
 
 
 class HexToRGBUnitTest(unittest.TestCase):
@@ -31,10 +31,10 @@ class HexToRGBUnitTest(unittest.TestCase):
 
     def test_incorrect_argument_type(self):
 
-        with self.assertRaises(TypeError) as context:
+        with self.assertRaises(Exception) as context:
             hex_to_rgb(123)
 
-        self.assertEqual("<type 'int'> is incorrect type. Argument should be 'str' or 'unicode'", context.exception.message)
+        self.assertEqual(HexadecimalAttributeError("object has no attribute 'lstrip").message, context.exception.message)
 
     def test_incorrect_non_hex_value(self):
 
